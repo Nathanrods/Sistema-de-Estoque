@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leitor de Código de Barras</title>
+    <script src="https://cdn.jsdelivr.net/npm/quagga@0.12.1/dist/quagga.min.js"></script>
+</head>
+<body>
+    <h1>Leitor de Código de Barras da Cavaletti</h1>
+    
+    <!-- Área do scanner -->
+    <div id="scanner" style="width: 100%; height: 500px;"></div>
+    
+    <!-- Entrada para código de barras manual -->
+    <div>
+        <label for="manual-barcode">Digite o código de barras:</label>
+        <input type="text" id="manual-barcode" placeholder="Código de barras">
+        <button onclick="searchProduct()">Buscar Produto</button>
+    </div>
+    
+    <!-- Exibição das informações do produto -->
+    <div>
+        <p><strong>Informações do Produto:</strong> <span id="product-info">Nenhum</span></p>
+    </div>
+
+    <script>
+        // Função para buscar informações do produto
+        function searchProduct() {
+            const barcode = document.getElementById('manual-barcode').value;
+            if (barcode) {
+                fetch(`getProduct.php?barcode=${barcode}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const productInfoElement = document.getElementById('product-info');
+                        productInfoElement.textContent = data.name ? data.name : 'Produto não encontrado';
+                    })
+                    .catch(error => {
+                        console.error('Erro ao buscar informações do produto:', error);
+                    });
+            } else {
+                alert('Por favor, digite um código de barras.');
+            }
+        }
+
+        // Inicializa o QuaggaJS para ler códigos de barras com a câmera
+        document.addEventListener('DOMContentLoaded', function () {
+            Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: document.querySelector('#scanner'),
+                    constraints: {
+                        facingMode: "environment"
+                    }
+                },
+                decoder: {
+                    readers: ["code_128_reader", "ean_reader", "ean_8_reader"]
+                }
+            }, function(err) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                Quagga.start();
+            });
+
+            Quagga.onDetected(function(data) {
+                const barcode = data.codeResult.code;
+                fetchProductInfo(barcode);
+            });
+
+            function fetchProductInfo(barcode) {
+                fetch(`getProduct.php?barcode=${barcode}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const productInfoElement = document.getElementById('product-info');
+                        productInfoElement.textContent = data.name ? data.name : 'Produto não encontrado';
+                    })
+                    .catch(error => {
+                        console.error('Erro ao buscar informações do produto:', error);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>

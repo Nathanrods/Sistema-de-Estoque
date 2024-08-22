@@ -1,0 +1,225 @@
+/* Resetando margens e preenchimentos do corpo */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo da barra lateral */
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cabeçalho da barra lateral */
+.sidebar h2 {
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    background-color: #444;
+}
+
+/* Lista da barra lateral */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Itens da lista */
+.sidebar ul li {
+    padding: 15px;
+    border-bottom: 1px solid #444;
+    cursor: pointer;
+}
+
+/* Links na barra lateral */
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+/* Submenus na barra lateral */
+.sidebar ul li ul.submenu {
+    display: none;
+    list-style-type: none;
+    padding-left: 15px;
+}
+
+/* Itens do submenu */
+.sidebar ul li ul.submenu li {
+    padding: 10px 15px;
+    background-color: #555;
+    border-bottom: none;
+}
+
+/* Estilo do item da lista ao passar o mouse */
+.sidebar ul li:hover {
+    background-color: #555;
+}
+
+/* Mostrar submenu ao passar o mouse */
+.sidebar ul li:hover ul.submenu {
+    display: block;
+}
+
+/* Estilo da barra superior */
+.topbar {
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    background-color: #f4f4f4;
+    padding: 10px 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Menu do usuário na barra superior */
+.user-menu {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Nome do usuário */
+.user-menu span {
+    font-weight: bold;
+    margin-right: 15px; /* Espaço entre nome e dropdown */
+}
+
+/* Dropdown do menu do usuário */
+.user-menu .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    border-radius: 5px;
+    z-index: 1000; /* Garante que o dropdown fique sobre outros elementos */
+}
+
+/* Lista do dropdown */
+.user-menu .dropdown ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Itens do dropdown */
+.user-menu .dropdown ul li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Links do dropdown */
+.user-menu .dropdown ul li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
+/* Mostrar o dropdown ao passar o mouse */
+.user-menu:hover .dropdown {
+    display: block;
+}
+
+/* Estilo do conteúdo principal */
+.content {
+    margin-left: 250px;
+    padding: 70px 20px 20px 20px; /* Ajustar a margem superior para compensar a barra superior */
+    width: calc(100% - 250px);
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+/* Estilo para a imagem do usuário na barra superior */
+.user-menu img.user-image {
+    width: 50px; /* Ajustar tamanho da imagem */
+    height: 50px; /* Ajustar tamanho da imagem */
+    border-radius: 50%;
+    object-fit: cover; /* Garante que a imagem não fique distorcida */
+    margin-right: 15px; /* Espaço entre imagem e nome */
+    border: 2px solid #ddd; /* Adicionar borda sutil */
+}
+
+/* Estilo para a seção de login e leitor de código de barras */
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+/* Seção da imagem */
+.image-section {
+    flex: 1;
+    background: url('path/to/your/image.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+/* Seção de login */
+.login-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.login-section h2 {
+    margin-bottom: 20px;
+}
+
+.login-section form {
+    width: 100%;
+    max-width: 300px;
+}
+
+.login-section input[type="text"],
+.login-section input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-section input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-section input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.error {
+    color: red;
+    margin-bottom: 20px;
+}

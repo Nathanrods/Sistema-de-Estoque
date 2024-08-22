@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+.container {
+    width: 800px;
+    height: 500px;
+    display: flex;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+}
+.image-section {
+    flex: 1;
+    background-image: url('../img/login.png'); /* Substitua pelo caminho da sua imagem */
+    background-size: cover;
+    background-position: center;
+}
+.login-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    box-sizing: border-box;
+}
+.login-section h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #333;
+}
+.login-section form {
+    display: flex;
+    flex-direction: column;
+}
+.login-section input[type="text"],
+.login-section input[type="password"] {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.login-section input[type="submit"] {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.login-section input[type="submit"]:hover {
+    background-color: #0056b3;
+}
